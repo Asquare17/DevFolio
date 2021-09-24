@@ -29,26 +29,13 @@ class AboutMobile extends StatelessWidget {
       child: Column(
         children: [
           CustomSectionHeading(text: "\nAbout Me"),
-          CustomSectionSubHeading(text: "Get to know me :)"),
+          CustomSectionSubHeading(text: "Get to know me "),
           Image.asset(
             'assets/mob.png',
             height: height * 0.27,
           ),
           SizedBox(
             height: height * 0.03,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Who am I?",
-              style: GoogleFonts.montserrat(
-                color: kPrimaryColor,
-                fontSize: height * 0.025,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: height * 0.028,
           ),
           Text(
             "I'm Muhammad Hamza, a Flutter developer, Technical blog writer and UI designer.",
@@ -62,7 +49,7 @@ class AboutMobile extends StatelessWidget {
             height: height * 0.02,
           ),
           Text(
-            "I'm a Final Year Computer Science student enrolled in COMSATS University, Islamabad. I have been developing mobile apps for over 1.5 years now. I have worked in teams for various startups and helped them in launching their prototypes and got valuable learning experience. I'm an active Google Developer Student Clubs (DSC) lead and also CEO/Founder Flutter Islamabad, Pakistan.",
+            "3+ years of experience in Mobile applocation development using Flutter, Kotlin and Swift. I have worked on several mobile solutions ranging from a cross-platform delivery app, store management app to a state's radio app and beyond. In my free time, I play Football (Soccer) and Chess.",
             style: GoogleFonts.montserrat(
               fontSize: height * 0.018,
               color: Colors.grey[500],
@@ -135,41 +122,44 @@ class AboutMobile extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: OutlinedCustomBtn(
-                      btnText: "Resume",
-                      onPressed: () {
-                        kIsWeb
-                            ? html.window.open(
-                                'https://drive.google.com/uc?export=view&id=1OOdcdGEN3thVvpZ4cl_MM0LT-GCMuLIE',
-                                "pdf")
-                            : launchURL(
-                                'https://drive.google.com/uc?export=view&id=1OOdcdGEN3thVvpZ4cl_MM0LT-GCMuLIE');
-                      }),
-                ),
-                Container(
-                  width: width * 0.2,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Colors.grey[900], width: 2.0),
-                    ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: OutlinedCustomBtn(
+                        btnText: "Resume",
+                        onPressed: () {
+                          kIsWeb
+                              ? html.window.open(
+                                  'https://drive.google.com/uc?export=view&id=1OOdcdGEN3thVvpZ4cl_MM0LT-GCMuLIE',
+                                  "pdf")
+                              : launchURL(
+                                  'https://drive.google.com/uc?export=view&id=1OOdcdGEN3thVvpZ4cl_MM0LT-GCMuLIE');
+                        }),
                   ),
                 ),
+                // Container(
+                //   width: width * 0.2,
+                //   decoration: BoxDecoration(
+                //     border: Border(
+                //       bottom: BorderSide(color: Colors.grey[900], width: 2.0),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
-          Row(
-            children: [
-              for (int i = 0; i < kCommunityLogo.length; i++)
-                CommunityIconBtn(
-                  icon: kCommunityLogo[i],
-                  link: kCommunityLinks[i],
-                  height: _communityLogoHeight[i],
-                ),
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     for (int i = 0; i < kCommunityLogo.length; i++)
+          //       CommunityIconBtn(
+          //         icon: kCommunityLogo[i],
+          //         link: kCommunityLinks[i],
+          //         height: _communityLogoHeight[i],
+          //       ),
+          //   ],
+          // ),
         ],
       ),
     );

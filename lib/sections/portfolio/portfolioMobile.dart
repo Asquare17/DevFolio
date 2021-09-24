@@ -15,7 +15,7 @@ class PortfolioMobileTab extends StatelessWidget {
         children: [
           CustomSectionHeading(text: "\nPortfolio"),
           CustomSectionSubHeading(
-              text: "Here are few samples of my previous work :)\n\n"),
+              text: "Here are few samples of my previous work \n\n"),
           CarouselSlider.builder(
             itemCount: 10,
             itemBuilder: (BuildContext context, int itemIndex, int i) =>
@@ -41,11 +41,11 @@ class PortfolioMobileTab extends StatelessWidget {
           SizedBox(
             height: height * 0.03,
           ),
-          OutlinedCustomBtn(
-              btnText: "See More",
-              onPressed: () {
-                launchURL("https://github.com/mhmzdev");
-              })
+          // OutlinedCustomBtn(
+          //     btnText: "See More",
+          //     onPressed: () {
+          //       launchURL("https://github.com/mhmzdev");
+          //     })
         ],
       ),
     );

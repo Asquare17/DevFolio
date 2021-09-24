@@ -18,7 +18,7 @@ class PortfolioDesktop extends StatelessWidget {
         children: [
           CustomSectionHeading(text: "\nPortfolio"),
           CustomSectionSubHeading(
-              text: "Here are few samples of my previous work :)\n\n"),
+              text: "Here are few samples of my previous work \n\n"),
           SizedBox(
             height: width > 1200 ? height * 0.45 : width * 0.21,
             child: ListView.separated(
@@ -49,11 +49,11 @@ class PortfolioDesktop extends StatelessWidget {
           SizedBox(
             height: height * 0.02,
           ),
-          OutlinedCustomBtn(
-              btnText: "See More",
-              onPressed: () {
-                launchURL("https://github.com/mhmzdev");
-              })
+          // OutlinedCustomBtn(
+          //     btnText: "See More",
+          //     onPressed: () {
+          //       launchURL("https://github.com/mhmzdev");
+          //     })
         ],
       ),
     );

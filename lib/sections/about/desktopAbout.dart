@@ -29,7 +29,7 @@ class AboutDesktop extends StatelessWidget {
       child: Column(
         children: [
           CustomSectionHeading(text: "\nAbout Me"),
-          CustomSectionSubHeading(text: "Get to know me :)"),
+          CustomSectionSubHeading(text: "Get to know me "),
           SizedBox(height: 30.0),
           Row(
             children: [
@@ -47,14 +47,6 @@ class AboutDesktop extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AdaptiveText(
-                        "Who am I?",
-                        style: GoogleFonts.montserrat(
-                            color: kPrimaryColor, fontSize: height * 0.025),
-                      ),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                      AdaptiveText(
                         "I'm Muhammad Hamza, a Flutter developer, Technical blog writer and UI designer.",
                         style: GoogleFonts.montserrat(
                           fontSize: height * 0.035,
@@ -68,7 +60,7 @@ class AboutDesktop extends StatelessWidget {
                         height: height * 0.02,
                       ),
                       AdaptiveText(
-                        "I'm a Final Year Computer Science student enrolled in COMSATS University, Islamabad. I have been developing mobile apps for over 1.5 years now. I have worked in teams for various startups and helped them in launching their prototypes and got valuable learning experience. I'm an active Google Developer Student Clubs (DSC) lead and also CEO/Founder Flutter Islamabad, Pakistan.",
+                        "3+ years of experience in Mobile applocation development using Flutter, Kotlin and Swift. I have worked on several mobile solutions ranging from a cross-platform delivery app, store management app to a state's radio app and beyond. In my free time, I play Football (Soccer) and Chess.",
                         style: GoogleFonts.montserrat(
                           fontSize: height * 0.02,
                           color: Colors.grey[500],
@@ -133,33 +125,36 @@ class AboutDesktop extends StatelessWidget {
                         height: height * 0.02,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: OutlinedCustomBtn(
-                              onPressed: () {
-                                html.window.open(
-                                    'https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing',
-                                    "pdf");
-                              },
-                              btnText: "Resume",
-                            ),
-                          ),
-                          Container(
-                            width: width * 0.05,
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                    color: Colors.grey[900], width: 2.0),
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: OutlinedCustomBtn(
+                                onPressed: () {
+                                  html.window.open(
+                                      'https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing',
+                                      "pdf");
+                                },
+                                btnText: "Resume",
                               ),
                             ),
                           ),
-                          for (int i = 0; i < kCommunityLogo.length; i++)
-                            CommunityIconBtn(
-                              icon: kCommunityLogo[i],
-                              link: kCommunityLinks[i],
-                              height: _communityLogoHeight[i],
-                            ),
+                          // Container(
+                          //   width: width * 0.05,
+                          //   decoration: BoxDecoration(
+                          //     border: Border(
+                          //       bottom: BorderSide(
+                          //           color: Colors.grey[900], width: 2.0),
+                          //     ),
+                          //   ),
+                          // ),
+                          // for (int i = 0; i < kCommunityLogo.length; i++)
+                          //   CommunityIconBtn(
+                          //     icon: kCommunityLogo[i],
+                          //     link: kCommunityLinks[i],
+                          //     height: _communityLogoHeight[i],
+                          //   ),
                         ],
                       ),
                     ],

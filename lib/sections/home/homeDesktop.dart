@@ -8,6 +8,7 @@ import 'package:folio/widget/adaptiveText.dart';
 import 'package:folio/widget/socialMediaIcon.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'dart:math' as math;
 
 class HomeDesktop extends StatelessWidget {
   @override
@@ -19,35 +20,34 @@ class HomeDesktop extends StatelessWidget {
     return Container(
       height: height - 50,
       width: width,
-      child: Stack(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Positioned(
-            top: width < 1200 ? height * 0.15 : height * 0.1,
-            right: width * 0.01,
-            child: Opacity(
-              opacity: 0.9,
-              child: EntranceFader(
-                offset: Offset(0, 0),
-                delay: Duration(seconds: 1),
-                duration: Duration(milliseconds: 800),
-                child: Image.asset(
-                  'assets/1.png',
-                  height: width < 1200 ? height * 0.8 : height * 0.85,
-                ),
-              ),
-            ),
-          ),
           Container(
-            margin:
-                EdgeInsets.fromLTRB(width * 0.1, height * 0.2, width * 0.1, 0),
+            margin: EdgeInsets.fromLTRB(0.0, 0, width * 0.2, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    EntranceFader(
+                      offset: Offset(0, 0),
+                      delay: Duration(seconds: 2),
+                      duration: Duration(milliseconds: 800),
+                      child: Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.rotationY(math.pi),
+                        child: Image.asset(
+                          "assets/hi.gif",
+                          height: height * 0.05,
+                        ),
+                      ),
+                    ),
                     AdaptiveText(
-                      "WELCOME TO MY PORTFOLIO! ",
+                      "  Hi, my name is",
                       style: GoogleFonts.montserrat(
                         fontSize: height * 0.03,
                         fontWeight: FontWeight.w300,
@@ -56,39 +56,33 @@ class HomeDesktop extends StatelessWidget {
                             : Colors.white,
                       ),
                     ),
-                    EntranceFader(
-                      offset: Offset(0, 0),
-                      delay: Duration(seconds: 2),
-                      duration: Duration(milliseconds: 800),
-                      child: Image.asset(
-                        "assets/hi.gif",
-                        height: height * 0.05,
-                      ),
-                    ),
                   ],
                 ),
                 SizedBox(
                   height: height * 0.04,
                 ),
                 AdaptiveText(
-                  "Muhammad",
-                  style: GoogleFonts.montserrat(
-                      fontSize: width < 1200 ? height * 0.085 : height * 0.095,
-                      fontWeight: FontWeight.w100,
-                      color: _themeProvider.lightTheme
-                          ? Colors.black
-                          : Colors.white,
-                      letterSpacing: 4.0),
-                ),
-                AdaptiveText(
-                  "Hamza",
+                  "Abdulwahab",
                   style: GoogleFonts.montserrat(
                       color: _themeProvider.lightTheme
                           ? Colors.black
                           : Colors.white,
-                      fontSize: width < 1200 ? height * 0.085 : height * 0.095,
+                      fontSize: width < 1200 ? width * 0.035 : width * 0.04,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 5.0),
+                ),
+                AdaptiveText(
+                  " Abdulrasaq",
+                  style: GoogleFonts.montserrat(
+                      color: _themeProvider.lightTheme
+                          ? Colors.black
+                          : Colors.white,
+                      fontSize: width < 1200 ? width * 0.035 : width * 0.04,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 5.0),
+                ),
+                SizedBox(
+                  height: height * 0.035,
                 ),
                 EntranceFader(
                   offset: Offset(-10, 0),
@@ -97,7 +91,7 @@ class HomeDesktop extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.play_arrow_rounded,
+                        Icons.smartphone,
                         color: kPrimaryColor,
                       ),
                       TyperAnimatedTextKit(
@@ -111,11 +105,28 @@ class HomeDesktop extends StatelessWidget {
                                 : Colors.white,
                           ),
                           text: [
-                            " Flutter Developer",
-                            " Technical Writer",
-                            " UI/UX Enthusiast"
+                            " Mobile Developer",
                           ]),
                     ],
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.05,
+                ),
+                MaterialButton(
+                  hoverColor: kPrimaryColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      side: BorderSide(color: kPrimaryColor)),
+                  onPressed: () {},
+                  child: Text(
+                    "Solve a problem",
+                    style: GoogleFonts.montserrat(
+                      color: _themeProvider.lightTheme
+                          ? Colors.black
+                          : Colors.white,
+                      fontWeight: FontWeight.w300,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -130,12 +141,26 @@ class HomeDesktop extends StatelessWidget {
                         icon: kSocialIcons[index],
                         socialLink: kSocialLinks[index],
                         height: height * 0.035,
-                        horizontalPadding: width * 0.005,
+                        horizontalPadding: width * 0.01,
                       ),
                     ),
                   ),
                 ),
               ],
+            ),
+          ),
+          Center(
+            child: CircleAvatar(
+              radius: (width / height) < 1.3 ? width * 0.15 : height * 0.2,
+              backgroundColor: Color(0xFF111111),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                    (width / height) < 1.3 ? width * 0.15 : height * 0.2),
+                child: Image.asset(
+                  'assets/1.png',
+                  height: (width / height) < 1.3 ? width * 0.3 : height * 0.4,
+                ),
+              ),
             ),
           ),
         ],

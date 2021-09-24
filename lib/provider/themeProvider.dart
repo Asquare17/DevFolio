@@ -17,7 +17,7 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   // App Theme
-  bool _lightTheme = false;
+  bool _lightTheme = true;
   bool get lightTheme => _lightTheme;
 
   set lightTheme(bool value) {

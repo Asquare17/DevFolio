@@ -61,7 +61,7 @@ class _GetInTouchDesktopState extends State<GetInTouchDesktop> {
 
   launchMailTo() async {
     final mailToLink = Mailto(
-      to: ["hamza.6.shakeel@gmil.com"],
+      to: ["asquare.shola@gmail.com"],
       subject: _projectType,
       body: _msgController.text.isEmpty
           ? "Some message here"

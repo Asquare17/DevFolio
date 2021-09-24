@@ -17,8 +17,7 @@ class ContactDesktop extends StatelessWidget {
       child: Column(
         children: [
           CustomSectionHeading(text: "\nGet in Touch"),
-          CustomSectionSubHeading(
-              text: "Let's build something together :)\n\n"),
+          CustomSectionSubHeading(text: "Let's build something together \n\n"),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
@@ -37,12 +36,12 @@ class ContactDesktop extends StatelessWidget {
               ),
             ),
           ),
-          // const SizedBox(
-          //   height: 25.0,
-          // ),
-          // OutlinedCustomBtn(
-          //     btnText: "Let's Work Together",
-          //     onPressed: () => Navigator.pushNamed(context, '/workTogether')),
+          const SizedBox(
+            height: 25.0,
+          ),
+          OutlinedCustomBtn(
+              btnText: "Let's Work Together",
+              onPressed: () => Navigator.pushNamed(context, '/workTogether')),
         ],
       ),
     );

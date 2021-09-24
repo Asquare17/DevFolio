@@ -1,3 +1,4 @@
+import 'package:animated_background/animated_background.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
@@ -23,7 +24,7 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   ThemeProvider _themeProviders = ThemeProvider();
   bool isPressed = false;
   bool _isScrollingDown = false;
@@ -34,7 +35,7 @@ class _MainPageState extends State<MainPage> {
     "ABOUT",
     "SERVICES",
     "PROJECTS",
-    "CONTACT"
+    "CONTACT",
   ];
 
   final List<IconData> _sectionsIcons = [
@@ -45,6 +46,18 @@ class _MainPageState extends State<MainPage> {
     Icons.article,
     Icons.phone,
   ];
+  ParticleOptions particleOptions = ParticleOptions(
+    baseColor: kPrimaryColor,
+    spawnOpacity: 0.0,
+    opacityChangeRate: 0.25,
+    minOpacity: 0.4,
+    maxOpacity: 0.7,
+    spawnMinSpeed: 30.0,
+    spawnMaxSpeed: 70.0,
+    spawnMinRadius: 4.0,
+    spawnMaxRadius: 6.0,
+    particleCount: 20,
+  );
 
   void _scroll(int i) {
     _scrollController.animateTo(
@@ -113,17 +126,27 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     final _themeProv = Provider.of<ThemeProvider>(context);
-    return Scaffold(
+    return
+        // AnimatedBackground(
+        // //  behaviour: RandomParticleBehaviour(),
+        //   vsync: this,
+        //   child:
+        Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: _themeProv.lightTheme ? Colors.white : Colors.black,
+      backgroundColor: _themeProv.lightTheme
+          ? Colors.white
+          : Color(0xFF26252C), //Colors.black,
       appBar: MediaQuery.of(context).size.width < 760
           ? AppBar(
               iconTheme: IconThemeData(
-                  color: _themeProv.lightTheme ? Colors.black : Colors.white),
+                  color: Colors
+                      .white), // _themeProv.lightTheme ? Colors.black : Colors.white),
               elevation: 0,
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.black,
               actions: [
-                NavBarLogo(),
+                NavBarLogo(
+                  color: Colors.white,
+                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.05,
                 )
@@ -135,10 +158,14 @@ class _MainPageState extends State<MainPage> {
           : null,
       body: Stack(
         children: [
-          SectionsBody(
-            scrollController: _scrollController,
-            sectionsLength: _sectionsIcons.length,
-            sectionWidget: sectionWidget,
+          AnimatedBackground(
+            behaviour: RandomParticleBehaviour(options: particleOptions),
+            vsync: this,
+            child: SectionsBody(
+              scrollController: _scrollController,
+              sectionsLength: _sectionsIcons.length,
+              sectionWidget: sectionWidget,
+            ),
           ),
           _isScrollingDown
               ? Positioned(
@@ -152,6 +179,7 @@ class _MainPageState extends State<MainPage> {
               : Container()
         ],
       ),
+      // ),
     );
   }
 
@@ -171,8 +199,8 @@ class _MainPageState extends State<MainPage> {
                 child: Text(
                   childText,
                   style: TextStyle(
-                    color:
-                        themeProvider.lightTheme ? Colors.black : Colors.white,
+                    color: Colors
+                        .white, // themeProvider.lightTheme ? Colors.black : Colors.white,
                   ),
                 ),
               ),
@@ -205,13 +233,16 @@ class _MainPageState extends State<MainPage> {
   Widget _appBarTabDesktop(ThemeProvider _themeProv) {
     return AppBar(
       elevation: 0.0,
-      backgroundColor: _themeProv.lightTheme ? Colors.white : Colors.black,
+      automaticallyImplyLeading: false,
+      backgroundColor:
+          Colors.black, //_themeProv.lightTheme ? Colors.white : Colors.black,
       title: MediaQuery.of(context).size.width < 780
           ? EntranceFader(
               duration: Duration(milliseconds: 250),
               offset: Offset(0, -10),
               delay: Duration(seconds: 3),
               child: NavBarLogo(
+                color: Colors.white,
                 height: 20.0,
               ))
           : EntranceFader(
@@ -219,36 +250,33 @@ class _MainPageState extends State<MainPage> {
               duration: Duration(milliseconds: 250),
               delay: Duration(milliseconds: 100),
               child: NavBarLogo(
+                color: Colors.white,
                 height: MediaQuery.of(context).size.height * 0.035,
               ),
             ),
       actions: [
         for (int i = 0; i < _sectionsName.length; i++)
           _appBarActions(_sectionsName[i], i, _sectionsIcons[i], _themeProv),
-        EntranceFader(
-          offset: Offset(0, -10),
-          delay: Duration(milliseconds: 100),
-          duration: Duration(milliseconds: 250),
-          child: Container(
-            height: 60.0,
-            width: 120.0,
-            padding: const EdgeInsets.all(8.0),
-            child: MaterialButton(
-              hoverColor: kPrimaryColor.withAlpha(150),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                  side: BorderSide(color: kPrimaryColor)),
-              onPressed: () {
-                html.window.open(
-                    'https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing',
-                    "pdf");
-              },
-              child: Text(
-                "RESUME",
-                style: GoogleFonts.montserrat(
-                  color: _themeProv.lightTheme ? Colors.black : Colors.white,
-                  fontWeight: FontWeight.w300,
-                ),
+        Container(
+          height: 45.0,
+          width: 120.0,
+          padding: const EdgeInsets.all(8.0),
+          child: MaterialButton(
+            hoverColor: kPrimaryColor.withAlpha(150),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+                side: BorderSide(color: kPrimaryColor)),
+            onPressed: () {
+              html.window.open(
+                  'https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing',
+                  "pdf");
+            },
+            child: Text(
+              "RESUME",
+              style: GoogleFonts.montserrat(
+                color: Colors
+                    .white, // _themeProv.lightTheme ? Colors.black : Colors.white,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),
@@ -256,13 +284,16 @@ class _MainPageState extends State<MainPage> {
         const SizedBox(width: 15.0),
         SizedBox(
           height: 30.0,
-          child: Switch(
-            inactiveTrackColor: Colors.grey,
-            value: !_themeProv.lightTheme,
-            onChanged: (value) {
-              _themeProv.lightTheme = !value;
+          child: IconButton(
+            onPressed: () {
+              _themeProv.lightTheme = !_themeProv.lightTheme;
             },
-            activeColor: kPrimaryColor,
+            icon: Icon(
+              _themeProv.lightTheme
+                  ? Icons.light_mode_outlined
+                  : Icons.dark_mode_outlined,
+              color: Colors.white,
+            ),
           ),
         ),
         const SizedBox(width: 15.0),
@@ -274,20 +305,55 @@ class _MainPageState extends State<MainPage> {
     return Drawer(
       child: Material(
         color: theme.lightTheme ? Colors.white : Colors.grey[900],
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 25.0, 0, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 12.0, 0, 12),
+              child: Center(
                 child: NavBarLogo(
                   height: 28,
                 ),
               ),
-              Divider(
-                color: theme.lightTheme ? Colors.grey[200] : Colors.white,
+            ),
+            Divider(
+              color: theme.lightTheme ? Colors.grey[200] : Colors.white,
+            ),
+            for (int i = 0; i < _sectionsName.length; i++)
+              _appBarActions(_sectionsName[i], i, _sectionsIcons[i], theme),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(
+                hoverColor: kPrimaryColor.withAlpha(150),
+                // shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(5.0),
+                //     side: BorderSide(color: kPrimaryColor)),
+                onPressed: () {
+                  launchURL(
+                      "https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing");
+                },
+                child: ListTile(
+                  leading: Icon(
+                    Icons.book,
+                    color: kPrimaryColor,
+                  ),
+                  title: Text(
+                    "RESUME",
+                    style: GoogleFonts.montserrat(
+                      fontWeight: FontWeight.w300,
+                      color: theme.lightTheme ? Colors.black : Colors.white,
+                    ),
+                  ),
+                ),
               ),
-              ListTile(
+            ),
+            Divider(
+              color: theme.lightTheme ? Colors.grey[200] : Colors.white,
+            ),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: ListTile(
                 leading: Icon(
                   Icons.light_mode,
                   color: kPrimaryColor,
@@ -304,39 +370,8 @@ class _MainPageState extends State<MainPage> {
                   activeColor: kPrimaryColor,
                 ),
               ),
-              Divider(
-                color: theme.lightTheme ? Colors.grey[200] : Colors.white,
-              ),
-              for (int i = 0; i < _sectionsName.length; i++)
-                _appBarActions(_sectionsName[i], i, _sectionsIcons[i], theme),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MaterialButton(
-                  hoverColor: kPrimaryColor.withAlpha(150),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                      side: BorderSide(color: kPrimaryColor)),
-                  onPressed: () {
-                    launchURL(
-                        "https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing");
-                  },
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.book,
-                      color: Colors.red,
-                    ),
-                    title: Text(
-                      "RESUME",
-                      style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.w300,
-                        color: theme.lightTheme ? Colors.black : Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
