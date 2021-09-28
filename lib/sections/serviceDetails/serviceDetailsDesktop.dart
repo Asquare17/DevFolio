@@ -63,7 +63,9 @@ class ServiceDetailsDescription extends StatelessWidget {
             children: [
               Icon(
                 Icons.play_arrow_rounded,
-                color: kPrimaryColor,
+                color: _themeProvider.lightTheme
+                    ? kPrimaryLightColor
+                    : kPrimaryColor,
               ),
               const SizedBox(width: 8.0),
               AdaptiveText(
@@ -314,8 +316,13 @@ class _ServicesShowCaseState extends State<ServicesShowCase> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(360),
                     color: _currentIndex == index
-                        ? kPrimaryColor
-                        : kPrimaryColor.withAlpha(100),
+                        ? _themeProvider.lightTheme
+                            ? kPrimaryLightColor
+                            : kPrimaryColor
+                        : (_themeProvider.lightTheme
+                                ? kPrimaryLightColor
+                                : kPrimaryColor)
+                            .withAlpha(100),
                   ),
                 );
               }).toList()),

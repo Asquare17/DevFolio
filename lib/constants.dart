@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Colors
-const Color kPrimaryColor = Color(0xffC0392B);
+const Color kPrimaryColor = Color(0xFF64ffda);
+const Color kPrimaryLightColor = Color(0xFF45B39D);
+// Color(0xFF57cbff);
+// Color(0xffC0392B);
+const Color kDarkBackground = Color(0xFF020c1b); //Color(0xFF26252C)
+const Color kLightBackground = Color(0xFFFFFFFF);
+const kLightWhite = Color(0xFFe6f1ff);
+const Color darKLightNavy = Color(0xFF112240);
+Color kFooter = Colors.grey[900];
 
 // Social Media
 const kSocialIcons = [
@@ -41,21 +49,21 @@ final kTools = [
   "Flutter",
   "Dart",
   "Kotlin",
-  "Swift",
   "Firebase",
-  "C++",
+  "Swift",
   "HTML",
+  "CSS",
   "Python"
 ];
 
 // services
-final kServicesIcons = [
-  "assets/services/app.png",
-  "assets/services/ui.png",
-  "assets/services/rapid.png",
-  "assets/services/blog.png",
-  "assets/services/open.png",
-];
+// final kServicesIcons = [
+//   "assets/services/app.png",
+//   "assets/services/ui.png",
+//   "assets/services/rapid.png",
+//   "assets/services/blog.png",
+//   "assets/services/open.png",
+// ];
 
 final kServicesTitles = [
   "Full App Development",
@@ -73,21 +81,21 @@ final kServicesTitles = [
 //   "Working as open source contributor on GitHub with 200+ stars and numerous forks on various projects liked and shared by other developers.\nMy GitHub Profile @mhmzdev",
 // ];
 
-final kServicesDescriptions = [
-  "Android app development via Flutter\n- Splash Screen\n- Firebase Auth/Cloud\n- REST APIs\n- Maps integration and more...!",
-  "Modern UI/UX Designing\n- Adobe XD\n- Mobile & Web designs\n- Interactive UI designs\n- Responsiveness\n- Promo Videos and more..!",
-  "Rapid Prototype via Flutter\n- Working MVP\n- Quick & Working prototype",
-  "Technical Blog writing\n- Medium blogs\n- Soothing header images\n- SEO friendly\n- Researched topics and more..!",
-  "Open source GitHub Projects\n- Awesome README.md\n- Well documented\n- Header images and more...!",
-];
+// final kServicesDescriptions = [
+//   "Android app development via Flutter\n- Splash Screen\n- Firebase Auth/Cloud\n- REST APIs\n- Maps integration and more...!",
+//   "Modern UI/UX Designing\n- Adobe XD\n- Mobile & Web designs\n- Interactive UI designs\n- Responsiveness\n- Promo Videos and more..!",
+//   "Rapid Prototype via Flutter\n- Working MVP\n- Quick & Working prototype",
+//   "Technical Blog writing\n- Medium blogs\n- Soothing header images\n- SEO friendly\n- Researched topics and more..!",
+//   "Open source GitHub Projects\n- Awesome README.md\n- Well documented\n- Header images and more...!",
+// ];
 
-final kServicesLinks = [
-  "https://www.fiverr.com/hamza6shakeel/be-your-mobile-app-developer-via-flutter",
-  "https://www.fiverr.com/hamza6shakeel/get-you-modern-ui-design-using-adobe-xd",
-  "https://www.fiverr.com/hamza6shakeel/be-your-mobile-app-developer-via-flutter",
-  "https://mhamzadev.medium.com",
-  "https://github.com/mhmzdev"
-];
+// final kServicesLinks = [
+//   "https://www.fiverr.com/hamza6shakeel/be-your-mobile-app-developer-via-flutter",
+//   "https://www.fiverr.com/hamza6shakeel/get-you-modern-ui-design-using-adobe-xd",
+//   "https://www.fiverr.com/hamza6shakeel/be-your-mobile-app-developer-via-flutter",
+//   "https://mhamzadev.medium.com",
+//   "https://github.com/mhmzdev"
+// ];
 
 // projects
 final kProjectsBanner = [
@@ -166,4 +174,9 @@ final kContactDetails = [
   "asquare.shola@gmail.com",
   "+234 806 965 5404",
   "Lagos, Nigeria",
+];
+
+final kContactFunction = [
+  "mailto:asquare.shola@gmail.com",
+  "tel:+234 806 965 5404",
 ];

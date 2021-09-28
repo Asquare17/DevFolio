@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:folio/constants.dart';
 import 'package:folio/provider/themeProvider.dart';
+import 'package:folio/widget/customBtn.dart';
 import 'package:folio/widget/socialMediaIcon.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class _HomeMobileState extends State<HomeMobile> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.only(bottom: height * 0.1),
+            padding: EdgeInsets.only(bottom: height * 0.05),
             child: Center(
               child: CircleAvatar(
                 radius: height * 0.15,
@@ -104,7 +105,9 @@ class _HomeMobileState extends State<HomeMobile> {
                   children: [
                     Icon(
                       Icons.smartphone,
-                      color: kPrimaryColor,
+                      color: _themeProvider.lightTheme
+                          ? kPrimaryLightColor
+                          : kPrimaryColor,
                     ),
                     TyperAnimatedTextKit(
                         isRepeatingAnimation: true,
@@ -114,11 +117,41 @@ class _HomeMobileState extends State<HomeMobile> {
                             color: _themeProvider.lightTheme
                                 ? Colors.black
                                 : Colors.white,
-                            fontWeight: FontWeight.w200),
+                            fontWeight: FontWeight.w500),
                         text: [
-                          " Mobile Developer",
+                          "Mobile Developer",
                         ]),
                   ],
+                ),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Text(
+                    "I build apps that follows the best practice to deliver over the top user experience. Open to building products that will eat the world.",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.montserrat(
+                        fontSize: height * 0.02,
+                        color: _themeProvider.lightTheme
+                            ? Colors.black
+                            : Colors.white,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.035,
+                ),
+                SizedBox(
+                  height: 40.0,
+                  width: 200,
+                  child: OutlinedCustomBtn(
+                    btnText: "Send message",
+                    onPressed: () {
+                      launchURL(
+                          "mailto:hamza.6.shakeel@gmail.com?subject=SOMESUBJECT&body=SOMEMSG");
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: height * 0.035,

@@ -23,7 +23,8 @@ class SocialMediaIconBtn extends StatelessWidget {
         ),
         iconSize: height,
         onPressed: () => launchURL(socialLink),
-        hoverColor: kPrimaryColor,
+        hoverColor:
+            _themeProvider.lightTheme ? kPrimaryLightColor : kPrimaryColor,
       ),
     );
   }

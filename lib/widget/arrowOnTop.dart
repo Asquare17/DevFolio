@@ -37,8 +37,9 @@ class _ArrowOnTopState extends State<ArrowOnTop> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color:
-                    _themeProvider.lightTheme ? Colors.grey[200] : Colors.grey[900],
+                color: _themeProvider.lightTheme
+                    ? Colors.grey[200]
+                    : Colors.grey[900],
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8.0),
                   bottomLeft: Radius.circular(8.0),
@@ -48,7 +49,10 @@ class _ArrowOnTopState extends State<ArrowOnTop> {
                         BoxShadow(
                           color: _themeProvider.lightTheme
                               ? Colors.black12
-                              : kPrimaryColor.withAlpha(200),
+                              : (_themeProvider.lightTheme
+                                      ? kPrimaryLightColor
+                                      : kPrimaryColor)
+                                  .withAlpha(200),
                           blurRadius: 12.0,
                           offset: Offset(2.0, 3.0),
                         )
@@ -57,7 +61,9 @@ class _ArrowOnTopState extends State<ArrowOnTop> {
               ),
               child: Icon(
                 Icons.arrow_drop_up_outlined,
-                color: kPrimaryColor,
+                color: _themeProvider.lightTheme
+                    ? kPrimaryLightColor
+                    : kPrimaryColor,
                 size: MediaQuery.of(context).size.height * 0.05,
               ),
             ),

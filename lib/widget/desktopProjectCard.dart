@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProjectCard extends StatefulWidget {
+class DesktopProjectCard extends StatefulWidget {
   final String projectIcon;
   final IconData projectIconData;
   final String projectTitle;
@@ -16,13 +16,15 @@ class ProjectCard extends StatefulWidget {
   final double cardHeight;
   final String backImage;
   final Widget bottomWidget;
+  final Function onTap;
 
-  const ProjectCard(
+  const DesktopProjectCard(
       {Key key,
       this.backImage,
       this.bottomWidget,
       this.projectIcon,
       this.projectTitle,
+      this.onTap,
       this.projectDescription,
       this.projectLink,
       this.projectIconData,
@@ -30,10 +32,10 @@ class ProjectCard extends StatefulWidget {
       this.cardHeight})
       : super(key: key);
   @override
-  _ProjectCardState createState() => _ProjectCardState();
+  _DesktopProjectCardState createState() => _DesktopProjectCardState();
 }
 
-class _ProjectCardState extends State<ProjectCard> {
+class _DesktopProjectCardState extends State<DesktopProjectCard> {
   bool isHover = false;
 
   @override
@@ -42,7 +44,7 @@ class _ProjectCardState extends State<ProjectCard> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return InkWell(
-      onTap: () => launch(widget.projectLink),
+      onTap: widget.onTap,
       onHover: (isHovering) {
         if (isHovering) {
           setState(() {

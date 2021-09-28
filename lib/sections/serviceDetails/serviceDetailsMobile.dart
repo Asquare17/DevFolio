@@ -89,8 +89,13 @@ class _ServiceDetailsMobileState extends State<ServiceDetailsMobile> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(360),
                         color: _currentIndex == index
-                            ? kPrimaryColor
-                            : kPrimaryColor.withAlpha(100),
+                            ? _themeProvider.lightTheme
+                                ? kPrimaryLightColor
+                                : kPrimaryColor
+                            : (_themeProvider.lightTheme
+                                    ? kPrimaryLightColor
+                                    : kPrimaryColor)
+                                .withAlpha(100),
                       ),
                     );
                   }).toList()),
@@ -99,7 +104,9 @@ class _ServiceDetailsMobileState extends State<ServiceDetailsMobile> {
                 children: [
                   Icon(
                     Icons.play_arrow,
-                    color: kPrimaryColor,
+                    color: _themeProvider.lightTheme
+                        ? kPrimaryLightColor
+                        : kPrimaryColor,
                   ),
                   AdaptiveText(
                     widget.serviceTitle,

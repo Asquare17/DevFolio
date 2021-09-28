@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folio/constants.dart';
 import 'package:folio/provider/themeProvider.dart';
 import 'package:folio/widget/adaptiveText.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,22 +13,36 @@ class CustomSectionHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _themeProvider = Provider.of<ThemeProvider>(context);
-    return AdaptiveText(
-      text,
-      style: GoogleFonts.montserrat(
-        fontSize: MediaQuery.of(context).size.height * 0.075,
-        fontWeight: FontWeight.w100,
-        letterSpacing: 1.0,
-        color: _themeProvider.lightTheme ? Colors.black : Colors.white,
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.remove,
+          color: _themeProvider.lightTheme ? kPrimaryLightColor : kPrimaryColor,
+        ),
+        AdaptiveText(
+          text.toUpperCase(),
+          style: GoogleFonts.montserrat(
+            fontWeight: FontWeight.w400,
+            letterSpacing: 1.0,
+            color:
+                _themeProvider.lightTheme ? kPrimaryLightColor : kPrimaryColor,
+          ),
+        ),
+        Icon(
+          Icons.remove,
+          color: _themeProvider.lightTheme ? kPrimaryLightColor : kPrimaryColor,
+        ),
+      ],
     );
   }
 }
 
 class CustomSectionSubHeading extends StatelessWidget {
   final String text;
+  final double fontSize;
 
-  const CustomSectionSubHeading({Key key, @required this.text})
+  const CustomSectionSubHeading({Key key, @required this.text, this.fontSize})
       : super(key: key);
 
   @override
@@ -36,7 +51,8 @@ class CustomSectionSubHeading extends StatelessWidget {
     return AdaptiveText(
       text,
       style: GoogleFonts.montserrat(
-        fontWeight: FontWeight.w200,
+        fontSize: fontSize ?? MediaQuery.of(context).size.height * 0.04,
+        fontWeight: FontWeight.w400,
         color: _themeProvider.lightTheme ? Colors.black : Colors.white,
       ),
     );

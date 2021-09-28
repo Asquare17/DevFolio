@@ -14,7 +14,6 @@ import 'package:folio/sections/contact/contact.dart';
 import 'package:folio/sections/home/home.dart';
 import 'package:folio/sections/navBar/navBarLogo.dart';
 import 'package:folio/sections/portfolio/portfolio.dart';
-import 'package:folio/sections/services/services.dart';
 import 'package:folio/widget/arrowOnTop.dart';
 import 'package:folio/widget/footer.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +32,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   final List<String> _sectionsName = [
     "HOME",
     "ABOUT",
-    "SERVICES",
+    // "SERVICES",
     "PROJECTS",
     "CONTACT",
   ];
@@ -41,23 +40,11 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   final List<IconData> _sectionsIcons = [
     Icons.home,
     Icons.person,
-    Icons.settings,
+    // Icons.settings,
     Icons.build,
     Icons.article,
     Icons.phone,
   ];
-  ParticleOptions particleOptions = ParticleOptions(
-    baseColor: kPrimaryColor,
-    spawnOpacity: 0.0,
-    opacityChangeRate: 0.25,
-    minOpacity: 0.4,
-    maxOpacity: 0.7,
-    spawnMinSpeed: 30.0,
-    spawnMaxSpeed: 70.0,
-    spawnMinRadius: 4.0,
-    spawnMaxRadius: 6.0,
-    particleCount: 20,
-  );
 
   void _scroll(int i) {
     _scrollController.animateTo(
@@ -81,12 +68,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     } else if (i == 1) {
       return About();
     } else if (i == 2) {
-      return Services();
-    } else if (i == 3) {
       return Portfolio();
-    } else if (i == 4) {
+    } else if (i == 3) {
       return Contact();
-    } else if (i == 5) {
+    } else if (i == 4) {
       return Footer();
     } else {
       return Container();
@@ -133,16 +118,13 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
         //   child:
         Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: _themeProv.lightTheme
-          ? Colors.white
-          : Color(0xFF26252C), //Colors.black,
+      backgroundColor:
+          _themeProv.lightTheme ? kLightBackground : kDarkBackground,
       appBar: MediaQuery.of(context).size.width < 760
           ? AppBar(
-              iconTheme: IconThemeData(
-                  color: Colors
-                      .white), // _themeProv.lightTheme ? Colors.black : Colors.white),
+              iconTheme: IconThemeData(color: Colors.white),
               elevation: 0,
-              backgroundColor: Colors.black,
+              backgroundColor: kFooter,
               actions: [
                 NavBarLogo(
                   color: Colors.white,
@@ -159,7 +141,20 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       body: Stack(
         children: [
           AnimatedBackground(
-            behaviour: RandomParticleBehaviour(options: particleOptions),
+            behaviour: RandomParticleBehaviour(
+                options: ParticleOptions(
+              baseColor:
+                  _themeProv.lightTheme ? kPrimaryLightColor : kPrimaryColor,
+              spawnOpacity: 0.0,
+              opacityChangeRate: 0.25,
+              minOpacity: 0.4,
+              maxOpacity: 0.7,
+              spawnMinSpeed: 30.0,
+              spawnMaxSpeed: 70.0,
+              spawnMinRadius: 4.0,
+              spawnMaxRadius: 6.0,
+              particleCount: 20,
+            )),
             vsync: this,
             child: SectionsBody(
               scrollController: _scrollController,
@@ -194,13 +189,14 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               padding: const EdgeInsets.all(8.0),
               height: 60.0,
               child: MaterialButton(
-                hoverColor: kPrimaryColor,
+                hoverColor: themeProvider.lightTheme
+                    ? kPrimaryLightColor
+                    : kPrimaryColor,
                 onPressed: () => _scroll(index),
                 child: Text(
                   childText,
                   style: TextStyle(
-                    color: Colors
-                        .white, // themeProvider.lightTheme ? Colors.black : Colors.white,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -209,7 +205,10 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
         : Padding(
             padding: const EdgeInsets.all(8.0),
             child: MaterialButton(
-              hoverColor: kPrimaryColor.withAlpha(70),
+              hoverColor: (themeProvider.lightTheme
+                      ? kPrimaryLightColor
+                      : kPrimaryColor)
+                  .withAlpha(70),
               onPressed: () {
                 _scroll(index);
                 Navigator.pop(context);
@@ -217,7 +216,9 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               child: ListTile(
                 leading: Icon(
                   icon,
-                  color: kPrimaryColor,
+                  color: themeProvider.lightTheme
+                      ? kPrimaryLightColor
+                      : kPrimaryColor,
                 ),
                 title: Text(childText,
                     style: TextStyle(
@@ -234,8 +235,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     return AppBar(
       elevation: 0.0,
       automaticallyImplyLeading: false,
-      backgroundColor:
-          Colors.black, //_themeProv.lightTheme ? Colors.white : Colors.black,
+      backgroundColor: kFooter,
       title: MediaQuery.of(context).size.width < 780
           ? EntranceFader(
               duration: Duration(milliseconds: 250),
@@ -262,10 +262,15 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           width: 120.0,
           padding: const EdgeInsets.all(8.0),
           child: MaterialButton(
-            hoverColor: kPrimaryColor.withAlpha(150),
+            hoverColor:
+                (_themeProv.lightTheme ? kPrimaryLightColor : kPrimaryColor)
+                    .withAlpha(150),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0),
-                side: BorderSide(color: kPrimaryColor)),
+                side: BorderSide(
+                    color: _themeProv.lightTheme
+                        ? kPrimaryLightColor
+                        : kPrimaryColor)),
             onPressed: () {
               html.window.open(
                   'https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing',
@@ -324,7 +329,9 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
-                hoverColor: kPrimaryColor.withAlpha(150),
+                hoverColor:
+                    (theme.lightTheme ? kPrimaryLightColor : kPrimaryColor)
+                        .withAlpha(150),
                 // shape: RoundedRectangleBorder(
                 //     borderRadius: BorderRadius.circular(5.0),
                 //     side: BorderSide(color: kPrimaryColor)),
@@ -335,7 +342,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                 child: ListTile(
                   leading: Icon(
                     Icons.book,
-                    color: kPrimaryColor,
+                    color:
+                        theme.lightTheme ? kPrimaryLightColor : kPrimaryColor,
                   ),
                   title: Text(
                     "RESUME",
@@ -356,7 +364,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               child: ListTile(
                 leading: Icon(
                   Icons.light_mode,
-                  color: kPrimaryColor,
+                  color: theme.lightTheme ? kPrimaryLightColor : kPrimaryColor,
                 ),
                 title: Text("Dark Mode",
                     style: TextStyle(
@@ -367,7 +375,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                   onChanged: (value) {
                     theme.lightTheme = !value;
                   },
-                  activeColor: kPrimaryColor,
+                  activeColor:
+                      theme.lightTheme ? kPrimaryLightColor : kPrimaryColor,
                 ),
               ),
             ),
@@ -398,7 +407,7 @@ class SectionsBody extends StatelessWidget {
         // physics: !kIsWeb ? ScrollPhysics() : NeverScrollableScrollPhysics(),
         controller: scrollController,
         itemCount: sectionsLength,
-        itemBuilder: (context, index) => sectionWidget(index),
+        itemBuilder: (contsext, index) => sectionWidget(index),
       ),
     );
   }

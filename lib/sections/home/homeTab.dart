@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:folio/constants.dart';
 import 'package:folio/provider/themeProvider.dart';
+import 'package:folio/widget/customBtn.dart';
 import 'package:folio/widget/socialMediaIcon.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -17,12 +18,13 @@ class HomeTab extends StatelessWidget {
     return Container(
       height: height,
       width: width,
+      padding: EdgeInsets.symmetric(horizontal: width * 0.06),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(0, 0, width * 0.1, 0),
+            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +65,7 @@ class HomeTab extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  " Abdulrasaq",
+                  "Abdulrasaq",
                   style: GoogleFonts.montserrat(
                     fontSize: width * 0.07,
                     fontWeight: FontWeight.w500,
@@ -78,22 +80,54 @@ class HomeTab extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.smartphone,
-                      color: kPrimaryColor,
+                      color: _themeProvider.lightTheme
+                          ? kPrimaryLightColor
+                          : kPrimaryColor,
                     ),
                     TyperAnimatedTextKit(
                         isRepeatingAnimation: true,
                         speed: Duration(milliseconds: 50),
                         textStyle: GoogleFonts.montserrat(
                           fontSize: height * 0.03,
-                          fontWeight: FontWeight.w200,
+                          fontWeight: FontWeight.w500,
                           color: _themeProvider.lightTheme
                               ? Colors.black
                               : Colors.white,
                         ),
                         text: [
-                          " Mobile Developer",
+                          "I'm a Mobile Developer",
                         ]),
                   ],
+                ),
+                SizedBox(
+                  height: height * 0.045,
+                ),
+                SizedBox(
+                  width: width * 0.55,
+                  child: Text(
+                    "I build apps that follows the best practice to deliver over the top user experience. Open to building products that will eat the world.",
+                    style: GoogleFonts.montserrat(
+                      fontSize: width * 0.018,
+                      fontWeight: FontWeight.w300,
+                      color: _themeProvider.lightTheme
+                          ? Colors.black
+                          : Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.055,
+                ),
+                SizedBox(
+                  height: 40.0,
+                  width: 200,
+                  child: OutlinedCustomBtn(
+                    btnText: "Send message",
+                    onPressed: () {
+                      launchURL(
+                          "mailto:hamza.6.shakeel@gmail.com?subject=SOMESUBJECT&body=SOMEMSG");
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: height * 0.045,
@@ -106,7 +140,7 @@ class HomeTab extends StatelessWidget {
                         icon: kSocialIcons[i],
                         socialLink: kSocialLinks[i],
                         height: height * 0.035,
-                        horizontalPadding: width * 0.015,
+                        horizontalPadding: i == 1 ? width * 0.015 : 0,
                       )
                   ],
                 )

@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:folio/constants.dart';
-import 'package:folio/widget/customBtn.dart';
 import 'package:folio/widget/customTextHeading.dart';
 import 'package:folio/widget/projectCard.dart';
 
@@ -12,10 +11,22 @@ class PortfolioMobileTab extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomSectionHeading(text: "\nPortfolio"),
-          CustomSectionSubHeading(
-              text: "Here are few samples of my previous work \n\n"),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: width * 0.06, vertical: height * 0.02),
+            child: Column(
+              children: [
+                CustomSectionHeading(text: "Portfolio"),
+                CustomSectionSubHeading(
+                  text: "Here are few samples of my previous work",
+                  fontSize: MediaQuery.of(context).size.width * 0.04,
+                ),
+              ],
+            ),
+          ),
+
           CarouselSlider.builder(
             itemCount: 10,
             itemBuilder: (BuildContext context, int itemIndex, int i) =>

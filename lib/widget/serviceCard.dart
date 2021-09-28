@@ -66,7 +66,9 @@ class _ServiceCardState extends State<ServiceCard> {
               border: Border(
                 bottom: isHover
                     ? BorderSide(
-                        color: kPrimaryColor,
+                        color: _themeProvider.lightTheme
+                            ? kPrimaryLightColor
+                            : kPrimaryColor,
                         width: 3.0,
                       )
                     : BorderSide(),
@@ -74,7 +76,10 @@ class _ServiceCardState extends State<ServiceCard> {
               boxShadow: isHover
                   ? [
                       BoxShadow(
-                        color: kPrimaryColor.withAlpha(100),
+                        color: (_themeProvider.lightTheme
+                                ? kPrimaryLightColor
+                                : kPrimaryColor)
+                            .withAlpha(100),
                         blurRadius: 12.0,
                         offset: Offset(0.0, 0.0),
                       )
@@ -97,7 +102,9 @@ class _ServiceCardState extends State<ServiceCard> {
             border: Border(
               bottom: isHover
                   ? BorderSide(
-                      color: kPrimaryColor,
+                      color: _themeProvider.lightTheme
+                          ? kPrimaryLightColor
+                          : kPrimaryColor,
                       width: 3.0,
                     )
                   : BorderSide(),
@@ -105,7 +112,10 @@ class _ServiceCardState extends State<ServiceCard> {
             boxShadow: isHover
                 ? [
                     BoxShadow(
-                      color: kPrimaryColor.withAlpha(100),
+                      color: (_themeProvider.lightTheme
+                              ? kPrimaryLightColor
+                              : kPrimaryColor)
+                          .withAlpha(100),
                       blurRadius: 12.0,
                       offset: Offset(0.0, 0.0),
                     )

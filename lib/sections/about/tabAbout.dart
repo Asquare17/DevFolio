@@ -12,8 +12,6 @@ import 'package:folio/widget/toolsTechWidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AboutTab extends StatelessWidget {
-  final _communityLogoHeight = [60.0, 70.0, 30.0];
-
   @override
   Widget build(BuildContext context) {
     final _themeProvider = Provider.of<ThemeProvider>(context);
@@ -22,116 +20,148 @@ class AboutTab extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: width * 0.05,
+        horizontal: width * 0.06,
       ),
-      color: _themeProvider.lightTheme ? Colors.white : Colors.black,
+      color: _themeProvider.lightTheme ? kLightBackground : kDarkBackground,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomSectionHeading(text: "\nAbout Me"),
+          CustomSectionHeading(text: "About Me"),
           CustomSectionSubHeading(text: "Get to know me "),
-          Image.asset(
-            'assets/mob.png',
-            height: height * 0.3,
-          ),
           SizedBox(
             height: height * 0.03,
           ),
-          Text(
-            "I'm Muhammad Hamza, a Flutter developer, Technical blog writer and UI designer.",
-            style: GoogleFonts.montserrat(
-              fontSize: height * 0.035,
-              fontWeight: FontWeight.w400,
-              color: _themeProvider.lightTheme ? Colors.black : Colors.white,
-            ),
-          ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Text(
-            "3+ years of experience in Mobile applocation development using Flutter, Kotlin and Swift. I have worked on several mobile solutions ranging from a cross-platform delivery app, store management app to a state's radio app and beyond. In my free time, I play Football (Soccer) and Chess.",
-            style: GoogleFonts.montserrat(
-              fontSize: height * 0.02,
-              color: Colors.grey[500],
-              height: 2.0,
-            ),
-          ),
-          SizedBox(
-            height: height * 0.025,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.grey[900], width: 2.0),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Technologies I have worked with:",
-              style: GoogleFonts.montserrat(
-                  color: kPrimaryColor, fontSize: height * 0.018),
-            ),
-          ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (int i = 0; i < kTools.length; i++)
-                ToolTechWidget(
-                  techName: kTools[i],
+              Expanded(
+                child: Image.asset(
+                  'assets/web.png',
+                  fit: BoxFit.fitWidth,
                 ),
-            ],
-          ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.grey[900], width: 2.0),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: height * 0.025,
-          ),
-          Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AboutMeMetaData(
-                    data: "Name",
-                    information: "Muhammad Hamza",
-                  ),
-                  AboutMeMetaData(
-                    data: "Age",
-                    information: "23",
-                  ),
-                ],
               ),
               SizedBox(
-                width: width > 710 ? width * 0.2 : width * 0.05,
+                width: width * 0.02,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AboutMeMetaData(
-                    data: "Email",
-                    information: "hamza.6.shakeel@gmail.com",
+              Expanded(
+                flex: 2,
+                child: Container(
+                  color:
+                      _themeProvider.lightTheme ? Colors.white : Colors.black,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "I'm Muhammad Hamza, a Flutter developer, Technical blog writer and UI designer.",
+                        style: GoogleFonts.montserrat(
+                          fontSize: height * 0.025,
+                          fontWeight: FontWeight.w400,
+                          color: _themeProvider.lightTheme
+                              ? Colors.black
+                              : Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * 0.02,
+                      ),
+                      Text(
+                        "3+ years of experience in Mobile applocation development using Flutter, Kotlin and Swift. I have worked on several mobile solutions ranging from a cross-platform delivery app, store management app to a state's radio app and beyond. In my free time, I play Football (Soccer) and Chess.",
+                        style: GoogleFonts.montserrat(
+                          fontSize: height * 0.025,
+                          fontWeight: FontWeight.w400,
+                          color: _themeProvider.lightTheme
+                              ? Colors.black
+                              : Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * 0.025,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom:
+                                BorderSide(color: Colors.grey[900], width: 2.0),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * 0.02,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Technologies I have worked with:",
+                          style: GoogleFonts.montserrat(
+                              color: _themeProvider.lightTheme
+                                  ? kPrimaryLightColor
+                                  : kPrimaryColor,
+                              fontSize: height * 0.018),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          for (int i = 0; i < 2; i++)
+                            SizedBox(
+                              width: width * 0.15,
+                              child: ToolTechWidget(
+                                techName: kTools[i],
+                              ),
+                            ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          for (int i = 2; i < 4; i++)
+                            SizedBox(
+                              width: width * 0.15,
+                              child: ToolTechWidget(
+                                techName: kTools[i],
+                              ),
+                            ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          for (int i = 4; i < 6; i++)
+                            SizedBox(
+                              width: width * 0.15,
+                              child: ToolTechWidget(
+                                techName: kTools[i],
+                              ),
+                            ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          for (int i = 6; i < 8; i++)
+                            SizedBox(
+                              width: width * 0.15,
+                              child: ToolTechWidget(
+                                techName: kTools[i],
+                              ),
+                            ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: height * 0.02,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom:
+                                BorderSide(color: Colors.grey[900], width: 2.0),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  AboutMeMetaData(
-                    data: "From",
-                    information: "Attock, PK",
-                  ),
-                ],
+                ),
               ),
             ],
           ),
           SizedBox(
-            height: height * 0.02,
+            height: height * 0.025,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -151,20 +181,6 @@ class AboutTab extends StatelessWidget {
                       }),
                 ),
               ),
-              // Container(
-              //   width: width * 0.05,
-              //   decoration: BoxDecoration(
-              //     border: Border(
-              //       bottom: BorderSide(color: Colors.grey[900], width: 2.0),
-              //     ),
-              //   ),
-              // ),
-              // for (int i = 0; i < kCommunityLogo.length; i++)
-              //   CommunityIconBtn(
-              //     icon: kCommunityLogo[i],
-              //     link: kCommunityLinks[i],
-              //     height: _communityLogoHeight[i],
-              //   ),
             ],
           )
         ],

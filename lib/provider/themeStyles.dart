@@ -8,9 +8,9 @@ class ThemeStyles {
         // Light Theme
         ThemeData(
             primarySwatch: Colors.red,
-            primaryColorLight: kPrimaryColor,
+            primaryColorLight: kPrimaryLightColor,
             brightness: Brightness.light,
-            primaryColor: kPrimaryColor,
+            primaryColor: kPrimaryLightColor,
             accentColor: Colors.black,
             highlightColor: Colors.black,
             canvasColor: Colors.white,

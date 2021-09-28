@@ -13,8 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:universal_html/html.dart' as html;
 
 class AboutDesktop extends StatelessWidget {
-  final _communityLogoHeight = [60.0, 70.0, 30.0];
-
   @override
   Widget build(BuildContext context) {
     final _themeProvider = Provider.of<ThemeProvider>(context);
@@ -22,34 +20,40 @@ class AboutDesktop extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: width * 0.02,
-      ),
-      color: _themeProvider.lightTheme ? Colors.white : Colors.black,
+      padding: EdgeInsets.symmetric(horizontal: width * 0.06),
+      color: _themeProvider.lightTheme ? kLightBackground : kDarkBackground,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomSectionHeading(text: "\nAbout Me"),
-          CustomSectionSubHeading(text: "Get to know me "),
+          CustomSectionHeading(text: "About Me"),
+          CustomSectionSubHeading(
+            text: "Get to know me ",
+            fontSize: width < 1230 ? width * 0.02 : null,
+          ),
           SizedBox(height: 30.0),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Image.asset(
                   'assets/web.png',
-                  height: height * 0.7,
+                  fit: width < 1230 ? BoxFit.fitWidth : BoxFit.cover,
+                  height: width < 1230 ? null : height * 0.5,
                 ),
+              ),
+              SizedBox(
+                width: width * 0.02,
               ),
               Expanded(
                 flex: width < 1230 ? 2 : 1,
                 child: Container(
-                  padding: EdgeInsets.only(left: width < 1230 ? 25.0 : 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AdaptiveText(
                         "I'm Muhammad Hamza, a Flutter developer, Technical blog writer and UI designer.",
                         style: GoogleFonts.montserrat(
-                          fontSize: height * 0.035,
+                          fontSize: width < 1230 ? width * 0.02 : width * 0.015,
                           fontWeight: FontWeight.w400,
                           color: _themeProvider.lightTheme
                               ? Colors.black
@@ -62,9 +66,11 @@ class AboutDesktop extends StatelessWidget {
                       AdaptiveText(
                         "3+ years of experience in Mobile applocation development using Flutter, Kotlin and Swift. I have worked on several mobile solutions ranging from a cross-platform delivery app, store management app to a state's radio app and beyond. In my free time, I play Football (Soccer) and Chess.",
                         style: GoogleFonts.montserrat(
-                          fontSize: height * 0.02,
-                          color: Colors.grey[500],
-                          height: 2.0,
+                          fontSize: width < 1230 ? width * 0.02 : width * 0.015,
+                          fontWeight: FontWeight.w400,
+                          color: _themeProvider.lightTheme
+                              ? Colors.black
+                              : Colors.white,
                         ),
                       ),
                       SizedBox(
@@ -74,7 +80,7 @@ class AboutDesktop extends StatelessWidget {
                         decoration: BoxDecoration(
                           border: Border(
                             bottom:
-                                BorderSide(color: Colors.grey[800], width: 2.0),
+                                BorderSide(color: Colors.grey[900], width: 2.0),
                           ),
                         ),
                       ),
@@ -84,12 +90,28 @@ class AboutDesktop extends StatelessWidget {
                       AdaptiveText(
                         "Technologies I have worked with:",
                         style: GoogleFonts.montserrat(
-                            color: kPrimaryColor, fontSize: height * 0.018),
+                          fontSize: width < 1230 ? width * 0.02 : width * 0.015,
+                          color: _themeProvider.lightTheme
+                              ? kPrimaryLightColor
+                              : kPrimaryColor,
+                        ),
                       ),
                       Row(
                         children: [
-                          for (int i = 0; i < kTools.length; i++)
+                          for (int i = 0; i < 4; i++)
                             ToolTechWidget(
+                              fontSize:
+                                  width < 1230 ? width * 0.02 : width * 0.015,
+                              techName: kTools[i],
+                            ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          for (int i = 4; i < 8; i++)
+                            ToolTechWidget(
+                              fontSize:
+                                  width < 1230 ? width * 0.02 : width * 0.015,
                               techName: kTools[i],
                             ),
                         ],
@@ -101,61 +123,9 @@ class AboutDesktop extends StatelessWidget {
                         decoration: BoxDecoration(
                           border: Border(
                             bottom:
-                                BorderSide(color: Colors.grey[800], width: 2.0),
+                                BorderSide(color: Colors.grey[900], width: 2.0),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height * 0.025,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AboutMeMetaData(
-                            data: "Name",
-                            information: "Muhammad Hamza",
-                          ),
-                          AboutMeMetaData(
-                            data: "Email",
-                            information: "hamza.6.shakeel@gmail.com",
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: height * 0.02,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: OutlinedCustomBtn(
-                                onPressed: () {
-                                  html.window.open(
-                                      'https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing',
-                                      "pdf");
-                                },
-                                btnText: "Resume",
-                              ),
-                            ),
-                          ),
-                          // Container(
-                          //   width: width * 0.05,
-                          //   decoration: BoxDecoration(
-                          //     border: Border(
-                          //       bottom: BorderSide(
-                          //           color: Colors.grey[900], width: 2.0),
-                          //     ),
-                          //   ),
-                          // ),
-                          // for (int i = 0; i < kCommunityLogo.length; i++)
-                          //   CommunityIconBtn(
-                          //     icon: kCommunityLogo[i],
-                          //     link: kCommunityLinks[i],
-                          //     height: _communityLogoHeight[i],
-                          //   ),
-                        ],
                       ),
                     ],
                   ),
@@ -165,7 +135,28 @@ class AboutDesktop extends StatelessWidget {
                 width: width < 1230 ? width * 0.05 : width * 0.1,
               ),
             ],
-          )
+          ),
+          SizedBox(
+            height: height * 0.025,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: OutlinedCustomBtn(
+                    onPressed: () {
+                      html.window.open(
+                          'https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing',
+                          "pdf");
+                    },
+                    btnText: "Resume",
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
