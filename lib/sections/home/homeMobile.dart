@@ -30,16 +30,33 @@ class _HomeMobileState extends State<HomeMobile> {
           Container(
             padding: EdgeInsets.only(bottom: height * 0.05),
             child: Center(
-              child: CircleAvatar(
-                radius: height * 0.15,
-                backgroundColor: Colors.black,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(height * 0.15),
-                  child: Image.asset(
-                    'assets/1.png',
-                    height: width < 700 ? height * 0.3 : height * 0.3,
+              child: Stack(
+                children: [
+                  CircleAvatar(
+                    radius: height * 0.15,
+                    backgroundColor: darKLightNavy,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(height * 0.15),
+                      child: Image.asset(
+                        'assets/1.png',
+                        height: width < 700 ? height * 0.3 : height * 0.3,
+                      ),
+                    ),
                   ),
-                ),
+                  Opacity(
+                    opacity: 0.4,
+                    child: CircleAvatar(
+                      radius: height * 0.15,
+                      backgroundColor: kPrimaryColor,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(height * 0.15),
+                        child: Container(
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -144,12 +161,11 @@ class _HomeMobileState extends State<HomeMobile> {
                 ),
                 SizedBox(
                   height: 40.0,
-                  width: 200,
+                  width: 150,
                   child: OutlinedCustomBtn(
-                    btnText: "Send message",
+                    btnText: "Hire Me",
                     onPressed: () {
-                      launchURL(
-                          "mailto:hamza.6.shakeel@gmail.com?subject=SOMESUBJECT&body=SOMEMSG");
+                      launchURL("mailto:asquare.shola@gmail.com");
                     },
                   ),
                 ),

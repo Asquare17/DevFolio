@@ -135,12 +135,11 @@ class HomeDesktop extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 40.0,
-                  width: 200,
+                  width: 150,
                   child: OutlinedCustomBtn(
-                    btnText: "Send message",
+                    btnText: "Hire Me",
                     onPressed: () {
-                      launchURL(
-                          "mailto:hamza.6.shakeel@gmail.com?subject=SOMESUBJECT&body=SOMEMSG");
+                      launchURL("mailto:asquare.shola@gmail.com");
                     },
                   ),
                 ),
@@ -164,17 +163,35 @@ class HomeDesktop extends StatelessWidget {
               ],
             ),
           ),
-          CircleAvatar(
-            radius: (width / height) < 1.3 ? width * 0.15 : height * 0.2,
-            backgroundColor: Color(0xFF111111),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(
-                  (width / height) < 1.3 ? width * 0.15 : height * 0.2),
-              child: Image.asset(
-                'assets/1.png',
-                height: (width / height) < 1.3 ? width * 0.3 : height * 0.4,
+          Stack(
+            children: [
+              CircleAvatar(
+                radius: (width / height) < 1.3 ? width * 0.15 : height * 0.2,
+                backgroundColor: darKLightNavy,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                      (width / height) < 1.3 ? width * 0.15 : height * 0.2),
+                  child: Image.asset(
+                    'assets/1.png',
+                    height: (width / height) < 1.3 ? width * 0.3 : height * 0.4,
+                  ),
+                ),
               ),
-            ),
+              Opacity(
+                opacity: 0.4,
+                child: CircleAvatar(
+                  radius: (width / height) < 1.3 ? width * 0.15 : height * 0.2,
+                  backgroundColor: kPrimaryColor,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(
+                        (width / height) < 1.3 ? width * 0.15 : height * 0.2),
+                    child: Container(
+                      color: Colors.transparent,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

@@ -11,7 +11,9 @@ class Footer extends StatelessWidget {
     final _themeProvider = Provider.of<ThemeProvider>(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return ColoredBox(
+    return Container(
+      margin: EdgeInsets.only(top: height * 0.2),
+      padding: const EdgeInsets.all(8.0),
       color: Colors.grey[900],
       child: Column(
         children: [

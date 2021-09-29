@@ -4,36 +4,44 @@ import 'package:folio/provider/themeProvider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class OutlinedCustomBtn extends StatelessWidget {
+class OutlinedCustomBtn extends StatefulWidget {
   final String btnText;
   final Function onPressed;
+  final bool online;
 
   const OutlinedCustomBtn(
-      {Key key, @required this.btnText, @required this.onPressed})
+      {Key key,
+      @required this.btnText,
+      @required this.onPressed,
+      this.online = true})
       : super(key: key);
 
+  @override
+  _OutlinedCustomBtnState createState() => _OutlinedCustomBtnState();
+}
+
+class _OutlinedCustomBtnState extends State<OutlinedCustomBtn> {
   @override
   Widget build(BuildContext context) {
     final _themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialButton(
-      color: _themeProvider.lightTheme ? Colors.white : Colors.grey[900],
+      color: kPrimaryLightColor,
+      disabledColor: Colors.grey,
       elevation: 5.0,
-      hoverColor:
-          _themeProvider.lightTheme ? kPrimaryLightColor : kPrimaryColor,
+      hoverColor: kPrimaryLightColor,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(
-            color:
-                _themeProvider.lightTheme ? kPrimaryLightColor : kPrimaryColor,
+            color: widget.online ? kPrimaryLightColor : Colors.grey,
           )),
-      onPressed: onPressed,
+      onPressed: widget.online ? widget.onPressed : null,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
-          btnText,
+          widget.btnText,
           style: GoogleFonts.montserrat(
-            fontWeight: FontWeight.w300,
-            color: _themeProvider.lightTheme ? Colors.black : Colors.white,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
           ),
         ),
       ),

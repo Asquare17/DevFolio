@@ -37,7 +37,7 @@ class _ContactCardMobileState extends State<ContactCardMobile> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return MaterialButton(
-      color: _themeProvider.lightTheme ? Colors.white : darKLightNavy,
+      color: _themeProvider.lightTheme ? kLightWhite : darKLightNavy,
       elevation: 5.0,
       hoverColor:
           _themeProvider.lightTheme ? kPrimaryLightColor : kPrimaryColor,

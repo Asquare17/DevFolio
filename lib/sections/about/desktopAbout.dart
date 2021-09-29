@@ -145,13 +145,17 @@ class AboutDesktop extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: OutlinedCustomBtn(
-                    onPressed: () {
-                      html.window.open(
-                          'https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing',
-                          "pdf");
-                    },
-                    btnText: "Resume",
+                  child: SizedBox(
+                    height: 40.0,
+                    width: 150,
+                    child: OutlinedCustomBtn(
+                      onPressed: () {
+                        html.window.open(
+                            'https://drive.google.com/file/d/1GF-wtbu2ob_Uxhw2In2QA8QiYi3XjCj1/view?usp=sharing',
+                            "pdf");
+                      },
+                      btnText: "Resume",
+                    ),
                   ),
                 ),
               ),

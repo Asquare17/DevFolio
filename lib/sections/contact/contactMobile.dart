@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:folio/constants.dart';
+import 'package:folio/helper/regex.dart';
 import 'package:folio/provider/themeProvider.dart';
 import 'package:folio/widget/contactMeCard.dart';
 import 'package:folio/widget/contactMobile.dart';
@@ -38,6 +39,7 @@ class _ContactMobileTabState extends State<ContactMobileTab> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
+      color: _themeProvider.lightTheme ? kLightBackground : kDarkBackground,
       padding: EdgeInsets.symmetric(
           horizontal: width * 0.06, vertical: height * 0.02),
       child: Column(
@@ -74,13 +76,6 @@ class _ContactMobileTabState extends State<ContactMobileTab> {
                     borderRadius: 30,
                     horizontalPadding: 0,
                     verticalPadding: width < 500 ? 5 : 10,
-                    cardWidth: width < 300
-                        ? width * 0.6
-                        : width < 400
-                            ? width * 0.5
-                            : width < 500
-                                ? width * 0.4
-                                : width * 0.2,
                     onTap: index == 2
                         ? null
                         : () {
@@ -105,12 +100,16 @@ class _ContactMobileTabState extends State<ContactMobileTab> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
                           width: width < 500 ? width * 0.42 : width * 0.33,
-                          child: TextField(
+                          child: TextFormField(
+                            cursorColor: _themeProvider.lightTheme
+                                ? kPrimaryLightColor
+                                : kPrimaryColor,
                             controller: _nameController,
                             keyboardType: TextInputType.name,
                             textCapitalization: TextCapitalization.words,
@@ -122,14 +121,25 @@ class _ContactMobileTabState extends State<ContactMobileTab> {
                                     : Colors.white),
                             decoration: InputDecoration(
                               filled: true,
-                              hintText: "Name",
-                              hintStyle: TextStyle(
+                              labelText: "Name",
+                              labelStyle: TextStyle(
                                   color: _themeProvider.lightTheme
                                       ? Colors.black
                                       : Colors.white),
                               fillColor: _themeProvider.lightTheme
                                   ? Colors.grey[200]
                                   : Colors.grey[700],
+                              errorBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red, width: 2),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: _themeProvider.lightTheme
+                                        ? kPrimaryLightColor
+                                        : kPrimaryColor,
+                                    width: 2),
+                              ),
                               border: OutlineInputBorder(),
                             ),
                           ),
@@ -139,25 +149,42 @@ class _ContactMobileTabState extends State<ContactMobileTab> {
                         ),
                         SizedBox(
                           width: width < 500 ? width * 0.42 : width * 0.33,
-                          child: TextField(
+                          child: TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            cursorColor: _themeProvider.lightTheme
+                                ? kPrimaryLightColor
+                                : kPrimaryColor,
                             controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
                             textInputAction: TextInputAction.next,
                             maxLines: 1,
+                            validator: emailVal,
                             style: TextStyle(
                                 color: _themeProvider.lightTheme
                                     ? Colors.black
                                     : Colors.white),
                             decoration: InputDecoration(
                               filled: true,
-                              hintText: "Email",
-                              hintStyle: TextStyle(
+                              labelText: "Email",
+                              labelStyle: TextStyle(
                                   color: _themeProvider.lightTheme
                                       ? Colors.black
                                       : Colors.white),
                               fillColor: _themeProvider.lightTheme
                                   ? Colors.grey[200]
                                   : Colors.grey[700],
+                              errorBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red, width: 2),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: _themeProvider.lightTheme
+                                        ? kPrimaryLightColor
+                                        : kPrimaryColor,
+                                    width: 2),
+                              ),
                               border: OutlineInputBorder(),
                             ),
                           ),
@@ -167,7 +194,10 @@ class _ContactMobileTabState extends State<ContactMobileTab> {
                     SizedBox(height: width < 500 ? 10 : 15.0),
                     SizedBox(
                       width: width < 500 ? width * 0.88 : width * 0.68,
-                      child: TextField(
+                      child: TextFormField(
+                        cursorColor: _themeProvider.lightTheme
+                            ? kPrimaryLightColor
+                            : kPrimaryColor,
                         controller: _subjectController,
                         keyboardType: TextInputType.multiline,
                         textInputAction: TextInputAction.next,
@@ -179,14 +209,24 @@ class _ContactMobileTabState extends State<ContactMobileTab> {
                                 : Colors.white),
                         decoration: InputDecoration(
                           filled: true,
-                          hintText: "Subject",
-                          hintStyle: TextStyle(
+                          labelText: "Subject",
+                          labelStyle: TextStyle(
                               color: _themeProvider.lightTheme
                                   ? Colors.black
                                   : Colors.white),
                           fillColor: _themeProvider.lightTheme
                               ? Colors.grey[200]
                               : Colors.grey[700],
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: _themeProvider.lightTheme
+                                    ? kPrimaryLightColor
+                                    : kPrimaryColor,
+                                width: 2),
+                          ),
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -194,26 +234,41 @@ class _ContactMobileTabState extends State<ContactMobileTab> {
                     SizedBox(height: width < 500 ? 10 : 15.0),
                     SizedBox(
                       width: width < 500 ? width * 0.88 : width * 0.68,
-                      child: TextField(
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        cursorColor: _themeProvider.lightTheme
+                            ? kPrimaryLightColor
+                            : kPrimaryColor,
                         controller: _msgController,
                         keyboardType: TextInputType.multiline,
                         textCapitalization: TextCapitalization.sentences,
                         textInputAction: TextInputAction.done,
                         maxLines: width < 500 ? 4 : 7,
+                        validator: emptyVal,
                         style: TextStyle(
                             color: _themeProvider.lightTheme
                                 ? Colors.black
                                 : Colors.white),
                         decoration: InputDecoration(
                           filled: true,
-                          hintText: "Message",
-                          hintStyle: TextStyle(
+                          labelText: "Message",
+                          labelStyle: TextStyle(
                               color: _themeProvider.lightTheme
                                   ? Colors.black
                                   : Colors.white),
                           fillColor: _themeProvider.lightTheme
                               ? Colors.grey[200]
                               : Colors.grey[700],
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red, width: 2),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: _themeProvider.lightTheme
+                                    ? kPrimaryLightColor
+                                    : kPrimaryColor,
+                                width: 2),
+                          ),
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -224,9 +279,11 @@ class _ContactMobileTabState extends State<ContactMobileTab> {
                       width: 200,
                       child: OutlinedCustomBtn(
                         btnText: "Send message",
+                        online: emailRegEx(_emailController.text) &&
+                            _msgController.text.isNotEmpty,
                         onPressed: () {
                           launchURL(
-                              "mailto:hamza.6.shakeel@gmail.com?subject=SOMESUBJECT&body=SOMEMSG");
+                              "mailto:asquare.shola@gmail.com?subject=SOMESUBJECT&body=SOMEMSG");
                         },
                       ),
                     ),

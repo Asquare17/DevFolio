@@ -150,16 +150,20 @@ class AboutMobile extends StatelessWidget {
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: OutlinedCustomBtn(
-                        btnText: "Resume",
-                        onPressed: () {
-                          kIsWeb
-                              ? html.window.open(
-                                  'https://drive.google.com/uc?export=view&id=1OOdcdGEN3thVvpZ4cl_MM0LT-GCMuLIE',
-                                  "pdf")
-                              : launchURL(
-                                  'https://drive.google.com/uc?export=view&id=1OOdcdGEN3thVvpZ4cl_MM0LT-GCMuLIE');
-                        }),
+                    child: SizedBox(
+                      height: 40.0,
+                      width: 150,
+                      child: OutlinedCustomBtn(
+                          btnText: "Resume",
+                          onPressed: () {
+                            kIsWeb
+                                ? html.window.open(
+                                    'https://drive.google.com/uc?export=view&id=1OOdcdGEN3thVvpZ4cl_MM0LT-GCMuLIE',
+                                    "pdf")
+                                : launchURL(
+                                    'https://drive.google.com/uc?export=view&id=1OOdcdGEN3thVvpZ4cl_MM0LT-GCMuLIE');
+                          }),
+                    ),
                   ),
                 ),
               ],

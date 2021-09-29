@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:folio/constants.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:folio/provider/themeProvider.dart';
 import 'package:folio/provider/themeStyles.dart';
 import 'package:folio/sections/getInTouch/getInTouch.dart';
@@ -9,8 +9,9 @@ import 'package:folio/sections/serviceDetails/serviceDetails.dart';
 import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   setPathUrlStrategy();
   runApp(MyApp());
 }

@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:folio/animations/bottomAnimation.dart';
 import 'package:folio/constants.dart';
+import 'package:folio/helper/regex.dart';
 import 'package:folio/provider/themeProvider.dart';
 import 'package:folio/widget/adaptiveText.dart';
 import 'package:folio/widget/customBtn.dart';
@@ -97,7 +98,8 @@ class _GetInTouchDesktopState extends State<GetInTouchDesktop> {
               const SizedBox(height: 15.0),
               SizedBox(
                 width: width * 0.4,
-                child: TextField(
+                child: TextFormField(
+                  validator: emptyVal,
                   controller: _msgController,
                   keyboardType: TextInputType.multiline,
                   textInputAction: TextInputAction.newline,
@@ -120,7 +122,7 @@ class _GetInTouchDesktopState extends State<GetInTouchDesktop> {
                   btnText: "Send",
                   onPressed: () {
                     launchURL(
-                        "mailto:hamza.6.shakeel@gmail.com?subject=SOMESUBJECT&body=SOMEMSG");
+                        "mailto:asquare.shola@gmail.com?subject=SOMESUBJECT&body=SOMEMSG");
                   },
                 ),
               ),

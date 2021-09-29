@@ -1,6 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:folio/constants.dart';
+import 'package:folio/helper/database.dart';
+import 'package:folio/helper/regex.dart';
 import 'package:folio/provider/themeProvider.dart';
 import 'package:folio/widget/contactMeCard.dart';
 import 'package:folio/widget/customBtn.dart';
@@ -37,6 +39,7 @@ class _ContactDesktopState extends State<ContactDesktop> {
     double width = MediaQuery.of(context).size.width;
 
     return Container(
+      color: _themeProvider.lightTheme ? kLightBackground : kDarkBackground,
       padding: EdgeInsets.symmetric(
           horizontal: width * 0.06, vertical: height * 0.02),
       child: Column(
@@ -75,10 +78,15 @@ class _ContactDesktopState extends State<ContactDesktop> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
                               width: width * 0.19,
-                              child: TextField(
+                              child: TextFormField(
+                                cursorColor: _themeProvider.lightTheme
+                                    ? kPrimaryLightColor
+                                    : kPrimaryColor,
                                 controller: _nameController,
                                 keyboardType: TextInputType.name,
                                 textInputAction: TextInputAction.next,
@@ -90,14 +98,24 @@ class _ContactDesktopState extends State<ContactDesktop> {
                                         : Colors.white),
                                 decoration: InputDecoration(
                                   filled: true,
-                                  hintText: "Name",
-                                  hintStyle: TextStyle(
+                                  labelText: "Name",
+                                  labelStyle: TextStyle(
                                       color: _themeProvider.lightTheme
                                           ? Colors.black
                                           : Colors.white),
                                   fillColor: _themeProvider.lightTheme
                                       ? Colors.grey[200]
                                       : Colors.grey[700],
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.red),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: _themeProvider.lightTheme
+                                            ? kPrimaryLightColor
+                                            : kPrimaryColor,
+                                        width: 2),
+                                  ),
                                   border: OutlineInputBorder(),
                                 ),
                               ),
@@ -107,7 +125,13 @@ class _ContactDesktopState extends State<ContactDesktop> {
                             ),
                             SizedBox(
                               width: width * 0.19,
-                              child: TextField(
+                              child: TextFormField(
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                cursorColor: _themeProvider.lightTheme
+                                    ? kPrimaryLightColor
+                                    : kPrimaryColor,
+                                validator: emailVal,
                                 controller: _emailController,
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
@@ -118,14 +142,24 @@ class _ContactDesktopState extends State<ContactDesktop> {
                                         : Colors.white),
                                 decoration: InputDecoration(
                                   filled: true,
-                                  hintText: "Email",
-                                  hintStyle: TextStyle(
+                                  labelText: "Email",
+                                  labelStyle: TextStyle(
                                       color: _themeProvider.lightTheme
                                           ? Colors.black
                                           : Colors.white),
                                   fillColor: _themeProvider.lightTheme
                                       ? Colors.grey[200]
                                       : Colors.grey[700],
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.red),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: _themeProvider.lightTheme
+                                            ? kPrimaryLightColor
+                                            : kPrimaryColor,
+                                        width: 2),
+                                  ),
                                   border: OutlineInputBorder(),
                                 ),
                               ),
@@ -135,7 +169,10 @@ class _ContactDesktopState extends State<ContactDesktop> {
                         const SizedBox(height: 15.0),
                         SizedBox(
                           width: width * 0.4,
-                          child: TextField(
+                          child: TextFormField(
+                            cursorColor: _themeProvider.lightTheme
+                                ? kPrimaryLightColor
+                                : kPrimaryColor,
                             controller: _subjectController,
                             keyboardType: TextInputType.multiline,
                             textInputAction: TextInputAction.next,
@@ -147,14 +184,24 @@ class _ContactDesktopState extends State<ContactDesktop> {
                                     : Colors.white),
                             decoration: InputDecoration(
                               filled: true,
-                              hintText: "Subject",
-                              hintStyle: TextStyle(
+                              labelText: "Subject",
+                              labelStyle: TextStyle(
                                   color: _themeProvider.lightTheme
                                       ? Colors.black
                                       : Colors.white),
                               fillColor: _themeProvider.lightTheme
                                   ? Colors.grey[200]
                                   : Colors.grey[700],
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.red),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: _themeProvider.lightTheme
+                                        ? kPrimaryLightColor
+                                        : kPrimaryColor,
+                                    width: 2),
+                              ),
                               border: OutlineInputBorder(),
                             ),
                           ),
@@ -162,7 +209,13 @@ class _ContactDesktopState extends State<ContactDesktop> {
                         const SizedBox(height: 15.0),
                         SizedBox(
                           width: width * 0.4,
-                          child: TextField(
+                          child: TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            cursorColor: _themeProvider.lightTheme
+                                ? kPrimaryLightColor
+                                : kPrimaryColor,
+                            validator: emptyVal,
                             controller: _msgController,
                             keyboardType: TextInputType.multiline,
                             textCapitalization: TextCapitalization.sentences,
@@ -174,14 +227,24 @@ class _ContactDesktopState extends State<ContactDesktop> {
                                     : Colors.white),
                             decoration: InputDecoration(
                               filled: true,
-                              hintText: "Message",
-                              hintStyle: TextStyle(
+                              labelText: "Message",
+                              labelStyle: TextStyle(
                                   color: _themeProvider.lightTheme
                                       ? Colors.black
                                       : Colors.white),
                               fillColor: _themeProvider.lightTheme
                                   ? Colors.grey[200]
                                   : Colors.grey[700],
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.red),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: _themeProvider.lightTheme
+                                        ? kPrimaryLightColor
+                                        : kPrimaryColor,
+                                    width: 2),
+                              ),
                               border: OutlineInputBorder(),
                             ),
                           ),
@@ -192,9 +255,24 @@ class _ContactDesktopState extends State<ContactDesktop> {
                           width: 200,
                           child: OutlinedCustomBtn(
                             btnText: "Send message",
-                            onPressed: () {
-                              launchURL(
-                                  "mailto:hamza.6.shakeel@gmail.com?subject=SOMESUBJECT&body=SOMEMSG");
+                            onPressed: () async {
+                              String result = await DatabaseService()
+                                  .sendMessage(
+                                      _msgController.text,
+                                      _emailController.text,
+                                      _subjectController.text,
+                                      _nameController.text,
+                                      DateTime.now());
+                              bool success = "Message sent" == result;
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  padding: EdgeInsets.all(8),
+                                  elevation: 3,
+                                  content: Text(result),
+                                  backgroundColor:
+                                      success ? Colors.green : Colors.red,
+                                ),
+                              );
                             },
                           ),
                         ),
